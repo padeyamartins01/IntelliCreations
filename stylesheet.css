@@ -1,181 +1,120 @@
-html, body {
-   margin: 0;
-   padding: 0;
-   width: 100%;
-   height: 100vh;
-   font-family: "Neue Montreal";
-   overflow: hidden; /* Prevent scrolling */
-}
+<!DOCTYPE html>
+<html lang="en">
 
-* {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
-   list-style: none;
-   text-decoration: none;
-   color: #000;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelli Creations & Design</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+</head>
 
-.header,
-.nav-header {
-   position: fixed;
-   width: 100%;
-   height: 100vh;
-   overflow: hidden;
-}
+<body>
+    <div class="header">
+        <h1>Intelli Creation & Design</h1>
+    </div>
 
-.header h1,
-.nav-header h1 {
-   bottom: 0px;
-   left: 0.06em;
-   position: absolute;
-   font-size: 100px;
-   font-family: 'SlugSingleW00-Regular';
-   letter-spacing: -10px;
-}
+    <div class="nav-icon">
+        <div class="bar bar_1"></div>
+        <div class="bar bar_2"></div>
+    </div>
 
-/* Navigation Icon Styling */
-.nav-icon {
-   position: fixed;
-   top: 0;
-   right: 0;
-   margin: 1em;
-   width: 4em;
-   height: 4em;
-   background: #000;
-   overflow: hidden;
-   z-index: 2;
-   cursor: pointer;
-}
+    <div class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Contact</a></li>
+    </div>
 
-.nav-icon .bar {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   content: '';
-   width: 4.2em;
-   height: 0.25em;
-   background: white;
-}
+    <div class="nav-container">
+        <div class="nav-header">
+            <h1>Intelli Creation & Design</h1>
+        </div>
+        <div class="nav-items">
+            <li>Our Vision</li>
+            <li>Projects</li>
+            <li>Video</li>
+            <li>About Us</li>
+        </div>
+        <div class="rights"><p>© 2024 All Rights Reserved</p></div>
+    </div>
 
-.nav-container {
-   position: fixed;
-   width: 100%;
-   height: 100vh;
-   background: #00ff00;
-   z-index: 1;
-}
+    <!-- Digital Clock -->
+    <div id="digital-clock"></div>
 
-.nav {
-   position: absolute;
-   width: 100%;
-   height: 3em;
-   display: flex;
-   justify-content: space-between;
-   z-index: 2;
-}
+    <script>
+        var t1 = new TimelineMax({paused: true});
 
-.nav li {
-   margin: 0.7em;
-   font-size: 20px;
-   font-weight: 600;
-}
+        t1.to(".nav-icon > .bar_1", 0.2, {
+            rotation: 45,
+            ease: Expo.Power1
+        });
 
-.nav li:nth-child(3) {
-   flex-grow: 0.5;
-}
+        t1.to(".nav-icon > .bar_2", 0.2, {
+            rotation: -45,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
 
-.nav li:not(:nth-of-type(1)) {
-   opacity: 0;
-}
+        t1.to(".nav-container", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
 
-.nav-items {
-   position: absolute;
-   top: 20%;
-   left: 60.5%;
-   transform: translateX(-50%);
-}
+        t1.staggerTo(".nav li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        }, 0.08);
 
-.nav-items li {
-   font-size: 3.7em;
-   font-weight: 300;
-   letter-spacing: -3px;
-   line-height: 60px;
-}
+        t1.staggerTo(".nav-items > li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: 0.05
+        }, 0.08);
 
-.rights {
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   margin: 1em;
-}
+        t1.to(".rights", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.1
+        });
 
-.rights p {
-   font-size: 20px;
-   font-weight: 600;
-}
+        t1.to(".nav-header", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.5
+        });
 
-/* Fade-in animations for menu */
-.nav-container,
-.nav-header,
-.nav-items li,
-.rights {
-   opacity: 0;
-}
+        t1.to("#digital-clock", 0.3, {
+            opacity: 0,
+            ease: Expo.Power1,
+            delay: -0.5
+        }); // Fade out clock
 
-/* Digital Clock Styling */
-#digital-clock {
-   position: fixed;
-   top: 50%; /* Center vertically */
-   left: 50%; /* Center horizontally */
-   transform: translate(-50%, -50%); /* Adjust position to center */
-   font-size: 2rem;
-   color: #000;
-   font-family: 'Pixelfy Sans';
-   z-index: 0;
-   padding: 10px 20px;
-   transition: opacity 0.3s ease; /* Smooth fade-out animation */
-   display: flex; /* Use flexbox */
-   flex-direction: column; /* Default direction */
-   justify-content: center; /* Center the clock */
-}
+        t1.reverse();
 
-/* Responsive styles */
-@media screen and (max-width: 768px) {
-   .header h1, .nav-header h1 {
-      font-size: 10vw; /* Adjusts based on viewport width */
-      letter-spacing: -5px;
-   }
+        $(document).on("click", ".nav-icon", function() {
+            t1.reversed(!t1.reversed());
+        });
 
-   .nav-icon {
-      width: 3em;
-      height: 3em;
-   }
+        // Function to update the clock every millisecond
+        function updateClock() {
+            var now = new Date();
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var seconds = String(now.getSeconds()).padStart(2, '0');
+            var milliseconds = String(now.getMilliseconds()).padStart(3, '0');
 
-   .nav-icon .bar {
-      width: 3.2em;
-      height: 0.20em;
-   }
-   
-   .nav li:not(:nth-of-type(1)) {
-      display: none;
-   }
-   
-   .nav-items {
-      left: 8.8em;
-   }
+            // Update the digital clock's inner HTML to include colons
+            document.getElementById('digital-clock').innerHTML = 
+                `<div>${hours}:${minutes}:${seconds}:${milliseconds}</div>`;
+        }
 
-   .nav-items li {
-      font-size: 3.2em;
-      line-height: 55px;
-   }
+        // Update the clock every millisecond
+        setInterval(updateClock, 1);
+    </script>
+</body>
 
-   .rights {
-      display: none;
-   }
-
-   #digital-clock {
-      font-size: 4vw; /* Adjust font size for better visibility on mobile */
-   }
-}
+</html>
