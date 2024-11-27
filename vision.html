@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Vision | Intelli Creations & Design</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Our Vision</h1>
+    </div>
+
+    <div class="nav-icon">
+        <div class="bar bar_1"></div>
+        <div class="bar bar_2"></div>
+    </div>
+
+    <div class="nav-container">
+        <div class="nav-header">
+            <h1>Intelli Creation & Design</h1>
+        </div>
+        <div class="nav-items">
+            <li><a href="vision.html">Our Vision</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </div>
+        <div class="rights">
+            <p>© 2024 All Rights Reserved</p>
+        </div>
+    </div>
+
+    <div class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li>
+            <a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243">
+                LinkedIn
+            </a>
+        </li>
+        <li><a href="mailto:pauladeyamartins01@gmail.com">Contact</a></li>
+    </div>
+
+    <div class="content">
+        <p>At Intelli Creations & Design, our vision is to push the boundaries of creativity and technology, blending innovative solutions with unparalleled design.</p>
+    </div>
+
+
+    <script>
+        // Navigation Icon Toggle
+        $(document).ready(function () {
+            $('.nav-icon').on('click', function () {
+                $('.nav-container').toggleClass('open');
+                $('.nav-container').css('opacity', $('.nav-container').hasClass('open') ? 1 : 0);
+            });
+        });
+
+        // Digital Clock
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('digital-clock').innerText = `${hours}:${minutes}:${seconds}`;
+            setTimeout(updateClock, 1000);
+        }
+        updateClock();
+    </script>
+</body>
+
+</html>
