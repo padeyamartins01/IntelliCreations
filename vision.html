@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Vision | Intelli Creations & Design</title>
+    <title>Intelli Creations & Design</title>
     <link rel="stylesheet" href="stylesheet.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
 </head>
 
 <body>
@@ -20,54 +21,98 @@
         <div class="bar bar_2"></div>
     </div>
 
+    <div class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQxp8XaYKSEmaQdS1H0WAQw%3D%3D">Linkedin</a></li>
+        <li><a href="pauladeyamartins01@gmail.com">Contact</a></li>
+    </div>
+
     <div class="nav-container">
         <div class="nav-header">
-            <h1>Intelli Creation & Design</h1>
+            <h1>Our Vision</h1>
         </div>
         <div class="nav-items">
-            <li><a href="vision.html">Our Vision</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="about.html">About Us</a></li>
         </div>
-        <div class="rights">
-            <p>© 2024 All Rights Reserved</p>
-        </div>
-    </div>
-
-    <div class="nav">
-        <li><a href="index.html">Home</a></li>
-        <li>
-            <a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243">
-                LinkedIn
-            </a>
-        </li>
-        <li><a href="mailto:pauladeyamartins01@gmail.com">Contact</a></li>
+        <div class="rights"><p>© 2024 All Rights Reserved</p></div>
     </div>
 
     <div class="content">
         <p>At Intelli Creations & Design, our vision is to push the boundaries of creativity and technology, blending innovative solutions with unparalleled design.</p>
     </div>
 
-
     <script>
-        // Navigation Icon Toggle
-        $(document).ready(function () {
-            $('.nav-icon').on('click', function () {
-                $('.nav-container').toggleClass('open');
-                $('.nav-container').css('opacity', $('.nav-container').hasClass('open') ? 1 : 0);
-            });
+        var t1 = new TimelineMax({paused: true});
+
+        t1.to(".nav-icon > .bar_1", 0.2, {
+            rotation: 45,
+            ease: Expo.Power1
         });
 
-        // Digital Clock
+        t1.to(".nav-icon > .bar_2", 0.2, {
+            rotation: -45,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
+
+        t1.to(".nav-container", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
+
+        t1.staggerTo(".nav li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        }, 0.08);
+
+        t1.staggerTo(".nav-items > li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: 0.05
+        }, 0.08);
+
+        t1.to(".rights", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.1
+        });
+
+        t1.to(".nav-header", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.5
+        });
+
+        t1.to("#digital-clock", 0.3, {
+            opacity: 0,
+            ease: Expo.Power1,
+            delay: -0.5
+        }); // Fade out clock
+
+        t1.reverse();
+
+        $(document).on("click", ".nav-icon", function() {
+            t1.reversed(!t1.reversed());
+        });
+
+        // Function to update the clock every millisecond
         function updateClock() {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('digital-clock').innerText = `${hours}:${minutes}:${seconds}`;
-            setTimeout(updateClock, 1000);
+            var now = new Date();
+            var hours = String(now.getHours()).padStart(2, '0');
+            var minutes = String(now.getMinutes()).padStart(2, '0');
+            var seconds = String(now.getSeconds()).padStart(2, '0');
+            var milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+
+            // Update the digital clock's inner HTML to include colons
+            document.getElementById('digital-clock').innerHTML = 
+                `<div>${hours}:${minutes}:${seconds}:${milliseconds}</div>`;
         }
-        updateClock();
+
+        // Update the clock every millisecond
+        setInterval(updateClock, 1);
     </script>
 </body>
 
