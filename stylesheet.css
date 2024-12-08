@@ -167,6 +167,33 @@ html, body {
    padding: 10px;
 }
 
+/* Marquee Styling */
+.marquee {
+   position: fixed;
+   top: 55%;
+   left: 50%;
+   transform: translateX(-50%);
+   font-size: 16px;
+   color: white;
+   overflow: hidden;
+   width: 100%;
+   font-style: italic;
+}
+
+.marquee p {
+   white-space: nowrap;
+   animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+   0% {
+       transform: translateX(-100%);
+   }
+   100% {
+       transform: translateX(100%);
+   }
+}
+
 /* Centering and Scaling for the Card */
 figure {
    display: grid;
@@ -222,6 +249,8 @@ figure:hover img {
    pointer-events: none;
    width: 100%;
    height: 100%;
+   overflow: hidden;
+   z-index: -1; /* Ensure circles are on top */
 }
 
 .circle {
@@ -229,37 +258,57 @@ figure:hover img {
    border-radius: 50%;
    mix-blend-mode: difference;
    pointer-events: none;
+   opacity: 0; /* Start hidden */
+   animation: fadeIn 1s ease-in forwards, moveCircle 20s infinite ease-in-out;
 }
 
 .circle.red {
    background-color: red;
-   width: 300px;
-   height: 300px;
+   width: 175px;
+   height: 175px;
 }
 
 .circle.yellow {
    background-color: yellow;
-   width: 300px;
-   height: 300px;
+   width: 250px;
+   height: 250px;
 }
 
 .circle.blue {
    background-color: blue;
-   width: 300px;
-   height: 300px;
+   width: 400px;
+   height: 400px;
 }
 
-/* Fade-in animations */
-@keyframes fadeIn {
-   from {
-      opacity: 0;
-      transform: translate(-50%, -60%);
+/* Circle movement animation */
+@keyframes moveCircle {
+   0% {
+       transform: translate(0, 0);
    }
-   to {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+   25% {
+       transform: translate(70vw, 40vh);
+   }
+   50% {
+       transform: translate(30vw, 80vh);
+   }
+   75% {
+       transform: translate(-50vw, 60vh);
+   }
+   100% {
+       transform: translate(0, 0);
    }
 }
+
+/* Fade-in animation */
+@keyframes fadeIn {
+   from {
+       opacity: 0;
+   }
+   to {
+       opacity: 1;
+   }
+}
+
 
 /* Scale-in animation for the card */
 @keyframes scaleIn {
@@ -288,6 +337,14 @@ figure:hover img {
    #digital-clock {
        font-size: 16px;
        padding: 8px;
+   }
+
+   .marquee {
+      font-size: 10px;
+   }
+
+   .marquee p {
+      animation: marquee 7s linear infinite;
    }
 
    .content {
