@@ -130,7 +130,7 @@ html, body {
    align-items: center;
    justify-content: center;
    width: 80%;
-   font-family: "Neue Montreal", sans-serif;
+   font-family: 'SlugSingleW00-Regular';
    color: #000;
    line-height: 1.6;
    animation: fadeIn 0.5s ease-in-out;
@@ -152,6 +152,8 @@ html, body {
    margin: 1em 0;
    color: #333;
    line-height: 1.8;
+   text-align: center;
+   font-style: italic;
 }
 
 /* Digital Clock Styling */
