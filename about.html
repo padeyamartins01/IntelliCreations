@@ -105,6 +105,33 @@
         $(document).on("click", ".nav-icon", function() {
             t1.reversed(!t1.reversed());
         });
+
+        // JavaScript for animated circles
+        document.addEventListener('DOMContentLoaded', () => {
+    const circlesContainer = document.createElement('div');
+    circlesContainer.className = 'circles-container';
+    document.body.appendChild(circlesContainer);
+
+    const colors = ['red', 'yellow', 'blue'];
+    const totalCircles = 3;
+
+    for (let i = 0; i < totalCircles; i++) {
+        const circle = document.createElement('div');
+        circle.className = `circle ${colors[i % colors.length]}`;
+
+        // Randomize initial position for each circle
+        circle.style.position = 'absolute';
+        circle.style.top = `${Math.random() * 100}vh`;
+        circle.style.left = `${Math.random() * 100}vw`;
+
+        // Add the circle to the container
+        circlesContainer.appendChild(circle);
+
+        // Optional: Add animation delay if needed (randomizes it)
+        circle.style.animationDelay = `${Math.random() * 5}s`;
+    }
+});
+
     </script>
 </body>
 
