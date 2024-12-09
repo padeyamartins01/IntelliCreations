@@ -95,6 +95,12 @@ html, body {
    transform: translateX(-50%);
 }
 
+.nav-items.inactive {
+   pointer-events: none; /* Disable clicking */
+   opacity: 0.5; /* Optional: visually indicate it's inactive */
+}
+
+
 .nav-items li {
    font-size: 3.7em;
    font-weight: 300;
@@ -207,6 +213,7 @@ figure {
    width: 250px;
    height: 300px;
    margin: auto; /* Centering the card */
+   z-index: 10;
    animation: scaleIn 0.5s ease-in-out; /* Animation effect */
 }
 
