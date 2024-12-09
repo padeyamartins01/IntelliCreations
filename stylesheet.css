@@ -180,7 +180,7 @@ html, body {
    color: white;
    overflow: hidden;
    width: 100%;
-   font-style: italic;
+   font-family: 'VT323', monospace; /* VT323 font applied */
 }
 
 .marquee p {
