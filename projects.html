@@ -45,8 +45,7 @@
             <figure>
                 <a href="https://www.arewa-salon.com/" target="_blank">
                     <img src="images/arewa-salon.png" alt="Arewa Salon">
-                </a>
-                <figcaption>Arewa Salon</figcaption>
+                <figcaption>Arewa Salon</figcaption></a>
             </figure>
             
         </div>
@@ -102,6 +101,28 @@
         $(document).on("click", ".nav-icon", function() {
             t1.reversed(!t1.reversed());
         });
+
+        const navContainer = document.querySelector('.nav-container');
+const navItems = document.querySelector('.nav-items');
+const navIcon = document.querySelector('.nav-icon');
+
+// Initially set nav-items to inactive
+navItems.classList.add('inactive');
+
+navIcon.addEventListener('click', () => {
+    const isActive = navContainer.classList.contains('active');
+    
+    if (isActive) {
+        // Remove active state and make nav-items inactive
+        navContainer.classList.remove('active');
+        navItems.classList.add('inactive');
+    } else {
+        // Add active state and make nav-items clickable
+        navContainer.classList.add('active');
+        navItems.classList.remove('inactive');
+    }
+});
+
 
         // JavaScript for animated circles
         document.addEventListener('DOMContentLoaded', () => {
