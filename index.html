@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="stylesheet.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -102,6 +103,28 @@
         $(document).on("click", ".nav-icon", function() {
             t1.reversed(!t1.reversed());
         });
+
+        const navContainer = document.querySelector('.nav-container');
+const navItems = document.querySelector('.nav-items');
+const navIcon = document.querySelector('.nav-icon');
+
+// Initially set nav-items to inactive
+navItems.classList.add('inactive');
+
+navIcon.addEventListener('click', () => {
+    const isActive = navContainer.classList.contains('active');
+    
+    if (isActive) {
+        // Remove active state and make nav-items inactive
+        navContainer.classList.remove('active');
+        navItems.classList.add('inactive');
+    } else {
+        // Add active state and make nav-items clickable
+        navContainer.classList.add('active');
+        navItems.classList.remove('inactive');
+    }
+});
+
 
         // Function to update the clock every millisecond
         function updateClock() {
