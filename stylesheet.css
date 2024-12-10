@@ -207,15 +207,15 @@ html, body {
 
 /* Centering and Scaling for the Card */
 figure {
-   display: grid;
+   display: block;
    border-radius: 1rem;
    overflow: hidden;
    cursor: pointer;
    width: 250px;
    height: 300px;
-   margin: auto; /* Centering the card */
+   margin: auto;
    z-index: 20;
-   animation: scaleIn 0.5s ease-in-out; /* Animation effect */
+   animation: scaleIn 0.5s ease-in-out;
 }
 
 figure > * {
@@ -352,7 +352,7 @@ figure:hover img {
    }
 
    .marquee {
-      font-size: 10px;
+      font-size: 12px;
    }
 
    .marquee p {
