@@ -22,7 +22,9 @@ html, body {
    width: 100%;
    height: 100vh;
    overflow: hidden;
+   pointer-events: none;
 }
+
 
 .header h1, .nav-header h1 {
    position: absolute;
@@ -32,6 +34,8 @@ html, body {
    font-family: 'SlugSingleW00-Regular';
    letter-spacing: -10px;
 }
+
+
 
 /* Navigation Icon Styling */
 .nav-icon {
@@ -62,9 +66,16 @@ html, body {
    width: 100%;
    height: 100vh;
    background: #00ff00;
+}
+
+.nav-container.nav-items.inactive {
+   pointer-events: none;
    z-index: 1;
 }
 
+.nav-container.active {
+   z-index: 1;
+}
 
 .nav {
    position: absolute;
@@ -94,6 +105,7 @@ html, body {
    top: 20%;
    left: 60.5%;
    transform: translateX(-50%);
+   z-index: 1;
 }
 
 .nav-items.inactive {
@@ -141,7 +153,9 @@ html, body {
    color: #000;
    line-height: 1.6;
    animation: fadeIn 0.5s ease-in-out;
+   z-index: -1;
 }
+
 
 /* Headers within the About Us section */
 .content h2 {
@@ -205,6 +219,8 @@ html, body {
    }
 }
 
+
+
 /* Centering and Scaling for the Card */
 figure {
    display: block;
@@ -214,7 +230,6 @@ figure {
    width: 250px;
    height: 300px;
    margin: auto;
-   z-index: 20;
    animation: scaleIn 0.5s ease-in-out;
 }
 
