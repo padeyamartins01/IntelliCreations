@@ -1,394 +1,161 @@
-/* General Reset */
-html, body {
-   margin: 0;
-   padding: 0;
-   width: 100%;
-   height: 100vh;
-   overflow: hidden; /* Prevent scrolling */
-}
+<!DOCTYPE html>
+<html lang="en">
 
-* {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
-   list-style: none;
-   text-decoration: none;
-   color: #000;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelli Creations & Design</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+</head>
 
-/* Header and Navigation Styling */
-.header, .nav-header {
-   position: fixed;
-   width: 100%;
-   height: 100vh;
-   overflow: hidden;
-   pointer-events: none;
-}
+<body>
+    <div class="header">
+        <h1>Projects</h1>
+    </div>
 
+    <div class="nav-icon">
+        <div class="bar bar_1"></div>
+        <div class="bar bar_2"></div>
+    </div>
 
-.header h1, .nav-header h1 {
-   position: absolute;
-   bottom: 0px;
-   left: 0.06em;
-   font-size: 100px;
-   font-family: 'SlugSingleW00-Regular';
-   letter-spacing: -10px;
-}
+    <div class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQxp8XaYKSEmaQdS1H0WAQw%3D%3D">Linkedin</a></li>
+        <li><a href="mailto:pauladeyamartins01@gmail.com">Email</a></li>
+    </div>
 
+    <div class="nav-container">
+        <div class="nav-header">
+            <h1>Projects</h1>
+        </div>
+        <div class="nav-items">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="vision.html">Our Vision</a></li>
+        </div>
+        <div class="rights"><p>© 2024 All Rights Reserved</p></div>
+    </div>
 
+    <div class="content">
+        <h2>Our Projects</h2>
+        <div class="project-cards">
+            <figure>
+                <a href="https://www.arewa-salon.com/" target="_blank">
+                    <img src="images/arewa-salon.png" alt="Arewa Salon">
+                    <figcaption>Arewa Salon</figcaption>
+                </a>
+            </figure>
+        </div>
+        
+    </div>
+    
 
-/* Navigation Icon Styling */
-.nav-icon {
-   position: fixed;
-   top: 0;
-   right: 0;
-   margin: 1em;
-   width: 4em;
-   height: 4em;
-   background: #000;
-   overflow: hidden;
-   z-index: 2;
-   cursor: pointer;
-}
+    <script>
+        var t1 = new TimelineMax({paused: true});
 
-.nav-icon .bar {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   width: 4.2em;
-   height: 0.25em;
-   background: white;
-}
+        t1.to(".nav-icon > .bar_1", 0.2, {
+            rotation: 45,
+            ease: Expo.Power1
+        });
 
-.nav-container {
-   position: fixed;
-   width: 100%;
-   height: 100vh;
-   background: #00ff00;
-}
+        t1.to(".nav-icon > .bar_2", 0.2, {
+            rotation: -45,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
 
-.nav-container.nav-items.inactive {
-   pointer-events: none;
-   z-index: 1;
-}
+        t1.to(".nav-container", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        });
 
-.nav-container.active {
-   z-index: 1;
-}
+        t1.staggerTo(".nav li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.2
+        }, 0.08);
 
-.nav {
-   position: absolute;
-   width: 100%;
-   height: 3em;
-   display: flex;
-   justify-content: space-between;
-   z-index: 2;
-}
+        t1.staggerTo(".nav-items > li", 0.2, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: 0.05
+        }, 0.08);
 
-.nav li {
-   margin: 0.7em;
-   font-size: 20px;
-   font-weight: 600;
-}
+        t1.to(".rights", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.1
+        });
 
-.nav li:nth-child(3) {
-   flex-grow: 0.5;
-}
+        t1.to(".nav-header", 0.3, {
+            opacity: 1,
+            ease: Expo.Power1,
+            delay: -0.5
+        });
 
-.nav li:not(:nth-of-type(1)) {
-   opacity: 0;
-}
+        t1.reverse();
 
-.nav-items {
-   position: absolute;
-   top: 20%;
-   left: 60.5%;
-   transform: translateX(-50%);
-   z-index: 1;
-}
+        $(document).on("click", ".nav-icon", function() {
+            t1.reversed(!t1.reversed());
+        });
 
-.nav-items.inactive {
-   pointer-events: none; /* Disable clicking */
-   opacity: 0.5; /* Optional: visually indicate it's inactive */
-}
+        const navContainer = document.querySelector('.nav-container');
+const navItems = document.querySelector('.nav-items');
+const navIcon = document.querySelector('.nav-icon');
 
+// Initially set nav-items to inactive
+navItems.classList.add('inactive');
 
-.nav-items li {
-   font-size: 3.7em;
-   font-weight: 300;
-   letter-spacing: -3px;
-   line-height: 60px;
-}
-
-.rights {
-   position: absolute;
-   bottom: 0;
-   right: 0;
-   margin: 1em;
-}
-
-.rights p {
-   font-size: 20px;
-   font-weight: 600;
-}
-
-/* Fade-in animations for menu */
-.nav-container, .nav-header, .nav-items li, .rights {
-   opacity: 0;
-}
-
-/* About Us Section Styling */
-.content {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   width: 80%;
-   font-family: 'SlugSingleW00-Regular';
-   color: #000;
-   line-height: 1.6;
-   animation: fadeIn 0.5s ease-in-out;
-   z-index: -1;
-}
-
-
-/* Headers within the About Us section */
-.content h2 {
-   font-size: 2.5em;
-   font-weight: bold;
-   margin: 0.5em 0;
-   text-transform: uppercase;
-   color: #000;
-}
-
-/* Paragraphs within the About Us section */
-.content p {
-   font-size: 1.2em;
-   font-weight: 300;
-   margin: 1em 0;
-   color: #333;
-   line-height: 1.8;
-   text-align: center;
-   font-style: italic;
-}
-
-/* Digital Clock Styling */
-#digital-clock {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   font-size: 20px;
-   letter-spacing: 10px;
-   font-weight: bold;
-   font-family: 'VT323', monospace; /* VT323 font applied */
-   color: white;
-   padding: 10px;
-}
-
-
-/* Marquee Styling */
-.marquee {
-   position: fixed;
-   top: 55%;
-   left: 50%;
-   transform: translateX(-50%);
-   font-size: 16px;
-   color: white;
-   overflow: hidden;
-   width: 100%;
-   font-family: 'VT323', monospace; /* VT323 font applied */
-}
-
-.marquee p {
-   white-space: nowrap;
-   animation: marquee 15s linear infinite;
-}
-
-@keyframes marquee {
-   0% {
-       transform: translateX(-100%);
-   }
-   100% {
-       transform: translateX(100%);
-   }
-}
+navIcon.addEventListener('click', () => {
+    const isActive = navContainer.classList.contains('active');
+    
+    if (isActive) {
+        // Remove active state and make nav-items inactive
+        navContainer.classList.remove('active');
+        navItems.classList.add('inactive');
+    } else {
+        // Add active state and make nav-items clickable
+        navContainer.classList.add('active');
+        navItems.classList.remove('inactive');
+    }
+});
 
 
 
-/* Centering and Scaling for the Card */
-figure {
-   display: block;
-   border-radius: 1rem;
-   overflow: hidden;
-   cursor: pointer;
-   width: 250px;
-   height: 300px;
-   margin: auto;
-   animation: scaleIn 0.5s ease-in-out;
-}
 
-figure > * {
-   grid-area: 1/1;
-   transition: 0.4s;
-}
+        // JavaScript for animated circles
+        document.addEventListener('DOMContentLoaded', () => {
+    const circlesContainer = document.createElement('div');
+    circlesContainer.className = 'circles-container';
+    document.body.appendChild(circlesContainer);
 
-figure img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-}
+    const colors = ['red', 'yellow', 'blue'];
+    const totalCircles = 3;
 
-figure figcaption {
-   display: grid;
-   align-items: end;
-   font-family: sans-serif;
-   font-size: 1.5rem;
-   font-weight: bold;
-   color: #0000;
-   padding: 0.75rem;
-   background: var(--c, #0009);
-   clip-path: inset(0 var(--_i, 100%) 0 0);
-   -webkit-mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-   -webkit-mask-composite: xor;
-   -webkit-mask-clip: text, padding-box;
-   margin: -1px;
-   transition: color 0.4s ease;
-}
+    for (let i = 0; i < totalCircles; i++) {
+        const circle = document.createElement('div');
+        circle.className = `circle ${colors[i % colors.length]}`;
 
-figure:hover figcaption {
-   --_i: 0%;
-   color: white; /* Text appears white on hover */
-}
+        // Randomize initial position for each circle
+        circle.style.position = 'absolute';
+        circle.style.top = `${Math.random() * 100}vh`;
+        circle.style.left = `${Math.random() * 100}vw`;
 
-figure:hover img {
-   transform: none;
-}
+        // Add the circle to the container
+        circlesContainer.appendChild(circle);
 
-/* Circle Styling */
-.circles-container {
-   position: absolute;
-   pointer-events: none;
-   width: 100%;
-   height: 100%;
-   overflow: hidden;
-   z-index: -1; /* Ensure circles are on top */
-}
-
-.circle {
-   position: absolute;
-   border-radius: 50%;
-   mix-blend-mode: difference;
-   pointer-events: none;
-   opacity: 0; /* Start hidden */
-   animation: fadeIn 1s ease-in forwards, moveCircle 20s infinite ease-in-out;
-}
-
-.circle.red {
-   background-color: red;
-   width: 175px;
-   height: 175px;
-}
-
-.circle.yellow {
-   background-color: yellow;
-   width: 250px;
-   height: 250px;
-}
-
-.circle.blue {
-   background-color: blue;
-   width: 400px;
-   height: 400px;
-}
-
-/* Circle movement animation */
-@keyframes moveCircle {
-   0% {
-       transform: translate(0, 0);
-   }
-   25% {
-       transform: translate(70vw, 40vh);
-   }
-   50% {
-       transform: translate(30vw, 80vh);
-   }
-   75% {
-       transform: translate(-50vw, 60vh);
-   }
-   100% {
-       transform: translate(0, 0);
-   }
-}
-
-/* Fade-in animation */
-@keyframes fadeIn {
-   from {
-       opacity: 0;
-   }
-   to {
-       opacity: 1;
-   }
-}
+        // Optional: Add animation delay if needed (randomizes it)
+        circle.style.animationDelay = `${Math.random() * 5}s`;
+    }
+});
 
 
-/* Scale-in animation for the card */
-@keyframes scaleIn {
-   from {
-      transform: scale(0.8);
-      opacity: 0;
-   }
-   to {
-      transform: scale(1);
-      opacity: 1;
-   }
-}
 
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-   .header h1, .nav-header h1 {
-       font-size: 50px;
-       letter-spacing: -5px;
-       margin-bottom: 110px;
-   }
+        
+    </script>
+</body>
 
-   .nav li {
-       font-size: 16px;
-   }
-
-   #digital-clock {
-       font-size: 16px;
-       padding: 8px;
-   }
-
-   .marquee {
-      font-size: 12px;
-   }
-
-   .marquee p {
-      animation: marquee 7s linear infinite;
-   }
-
-   .content {
-       width: 90%;
-       font-size: 1em;
-   }
-
-   .content h2 {
-       font-size: 1.5em;
-   }
-
-   .content p {
-       font-size: 0.75em;
-   }
-
-   figure {
-      width: 150px;
-      height: 200px;
-  }
-}
+</html>
