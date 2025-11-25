@@ -1,161 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelli Creations & Design</title>
+
     <link rel="stylesheet" href="stylesheet.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
 </head>
 
 <body>
+
+    <!-- PAGE TITLE -->
     <div class="header">
         <h1>Projects</h1>
     </div>
 
+    <!-- NAV MENU ICON -->
     <div class="nav-icon">
         <div class="bar bar_1"></div>
         <div class="bar bar_2"></div>
     </div>
 
+    <!-- NAV BAR -->
     <div class="nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BQxp8XaYKSEmaQdS1H0WAQw%3D%3D">Linkedin</a></li>
+        <li><a href="https://www.linkedin.com/in/paul-adeya-martins-1062b1243">LinkedIn</a></li>
         <li><a href="mailto:pauladeyamartins01@gmail.com">Contact</a></li>
     </div>
 
+    <!-- FULL SCREEN NAV -->
     <div class="nav-container">
         <div class="nav-header">
             <h1>Projects</h1>
         </div>
+
         <div class="nav-items">
             <li><a href="about.html">About Us</a></li>
             <li><a href="vision.html">Our Vision</a></li>
         </div>
+
         <div class="rights"><p>© 2024 All Rights Reserved</p></div>
     </div>
 
+    <!-- PAGE CONTENT -->
     <div class="content">
         <h2>Our Projects</h2>
+
         <div class="project-cards">
-            <figure>
-                <a href="https://www.arewa-salon.com/" target="_blank">
-                    <img src="images/arewa-salon.png" alt="Arewa Salon">
-                    <figcaption>Arewa Salon</figcaption>
-                </a>
-            </figure>
-        </div>
-        
+
+    <figure>
+        <a class="card-link" href="https://www.arewa-salon.com/" target="_blank">
+            <img src="images/arewa-salon.png" alt="Arewa Salon">
+            <figcaption>Arewa Salon</figcaption>
+        </a>
+    </figure>
+
+    <figure>
+        <a class="card-link" href="https://www.eazyinspectionsandremodeling.com/" target="_blank">
+            <img src="images/ezi.png" alt="Eazy Inspections & Remodeling">
+            <figcaption>Eazy Inspections & Remodeling</figcaption>
+        </a>
+
+</div>
+
+
     </div>
-    
 
     <script>
+        /* Menu Animation */
         var t1 = new TimelineMax({paused: true});
 
-        t1.to(".nav-icon > .bar_1", 0.2, {
-            rotation: 45,
-            ease: Expo.Power1
-        });
-
-        t1.to(".nav-icon > .bar_2", 0.2, {
-            rotation: -45,
-            ease: Expo.Power1,
-            delay: -0.2
-        });
-
-        t1.to(".nav-container", 0.3, {
-            opacity: 1,
-            ease: Expo.Power1,
-            delay: -0.2
-        });
-
-        t1.staggerTo(".nav li", 0.2, {
-            opacity: 1,
-            ease: Expo.Power1,
-            delay: -0.2
-        }, 0.08);
-
-        t1.staggerTo(".nav-items > li", 0.2, {
-            opacity: 1,
-            ease: Expo.Power1,
-            delay: 0.05
-        }, 0.08);
-
-        t1.to(".rights", 0.3, {
-            opacity: 1,
-            ease: Expo.Power1,
-            delay: -0.1
-        });
-
-        t1.to(".nav-header", 0.3, {
-            opacity: 1,
-            ease: Expo.Power1,
-            delay: -0.5
-        });
-
+        t1.to(".nav-icon > .bar_1", 0.2, { rotation: 45, ease: Expo.Power1 });
+        t1.to(".nav-icon > .bar_2", 0.2, { rotation: -45, ease: Expo.Power1, delay: -0.2 });
+        t1.to(".nav-container", 0.3, { opacity: 1, ease: Expo.Power1, delay: -0.2 });
+        t1.staggerTo(".nav li", 0.2, { opacity: 1, ease: Expo.Power1, delay: -0.2 }, 0.08);
+        t1.staggerTo(".nav-items > li", 0.2, { opacity: 1, ease: Expo.Power1, delay: 0.05 }, 0.08);
+        t1.to(".rights", 0.3, { opacity: 1, ease: Expo.Power1, delay: -0.1 });
+        t1.to(".nav-header", 0.3, { opacity: 1, ease: Expo.Power1, delay: -0.5 });
         t1.reverse();
 
         $(document).on("click", ".nav-icon", function() {
             t1.reversed(!t1.reversed());
         });
 
+        /* Enable/Disable Clicks When Menu Opens */
         const navContainer = document.querySelector('.nav-container');
-const navItems = document.querySelector('.nav-items');
-const navIcon = document.querySelector('.nav-icon');
+        const navItems = document.querySelector('.nav-items');
+        const navIcon = document.querySelector('.nav-icon');
 
-// Initially set nav-items to inactive
-navItems.classList.add('inactive');
-
-navIcon.addEventListener('click', () => {
-    const isActive = navContainer.classList.contains('active');
-    
-    if (isActive) {
-        // Remove active state and make nav-items inactive
-        navContainer.classList.remove('active');
         navItems.classList.add('inactive');
-    } else {
-        // Add active state and make nav-items clickable
-        navContainer.classList.add('active');
-        navItems.classList.remove('inactive');
-    }
-});
 
+        navIcon.addEventListener('click', () => {
+            if (navContainer.classList.contains('active')) {
+                navContainer.classList.remove('active');
+                navItems.classList.add('inactive');
+            } else {
+                navContainer.classList.add('active');
+                navItems.classList.remove('inactive');
+            }
+        });
 
-
-
-        // JavaScript for animated circles
+        /* Background Circles */
         document.addEventListener('DOMContentLoaded', () => {
-    const circlesContainer = document.createElement('div');
-    circlesContainer.className = 'circles-container';
-    document.body.appendChild(circlesContainer);
+            const circlesContainer = document.createElement('div');
+            circlesContainer.className = 'circles-container';
+            document.body.appendChild(circlesContainer);
 
-    const colors = ['red', 'yellow', 'blue'];
-    const totalCircles = 3;
+            const colors = ['red', 'yellow', 'blue'];
+            const totalCircles = 3;
 
-    for (let i = 0; i < totalCircles; i++) {
-        const circle = document.createElement('div');
-        circle.className = `circle ${colors[i % colors.length]}`;
+            for (let i = 0; i < totalCircles; i++) {
+                const circle = document.createElement('div');
+                circle.className = `circle ${colors[i % colors.length]}`;
 
-        // Randomize initial position for each circle
-        circle.style.position = 'absolute';
-        circle.style.top = `${Math.random() * 100}vh`;
-        circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.top = `${Math.random() * 100}vh`;
+                circle.style.left = `${Math.random() * 100}vw`;
+                circle.style.animationDelay = `${Math.random() * 5}s`;
 
-        // Add the circle to the container
-        circlesContainer.appendChild(circle);
-
-        // Optional: Add animation delay if needed (randomizes it)
-        circle.style.animationDelay = `${Math.random() * 5}s`;
-    }
-});
-
-
-
-        
+                circlesContainer.appendChild(circle);
+            }
+        });
     </script>
-</body>
 
+</body>
 </html>
