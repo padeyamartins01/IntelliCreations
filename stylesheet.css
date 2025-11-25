@@ -151,7 +151,7 @@ html, body {
    color: #000;
    line-height: 1.6;
    animation: fadeIn 0.5s ease-in-out;
-   pointer-events: auto;
+   pointer-events: visible;
    z-index: 0;
 }
 
@@ -228,7 +228,7 @@ figure {
    cursor: pointer;
    width: 250px;
    height: 300px;
-   margin: auto;
+   margin: 20px;
    animation: scaleIn 0.5s ease-in-out;
 }
 
@@ -267,6 +267,16 @@ figure:hover figcaption {
 
 figure:hover img {
    transform: none;
+}
+
+.project-cards {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap; /* side-by-side on desktop */
+    width: 100%;
+    z-index: 10;
+    position: relative;
 }
 
 /* Circle Styling */
@@ -375,6 +385,7 @@ figure:hover img {
 
    .content {
        width: 90%;
+       height: 75%;
        font-size: 1em;
    }
 
@@ -388,6 +399,14 @@ figure:hover img {
 
    figure {
       width: 150px;
-      height: 200px;
+      height: 150px;
+      margin: 10px;
   }
+
+  .project-cards {
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+}
+
 }
